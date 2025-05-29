@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import axios from "axios";
@@ -10,7 +10,7 @@ import { ConfirmDialog } from "primereact/confirmdialog";
 import { confirmDialog } from "primereact/confirmdialog";
 
 function Users() {
-  const [users, setUsers] = useState([]);
+  const [users, setUsersList] = useState([]);
   const [showViewMode, setShowViewMode] = useState(false);
   const [showAddMode, setShowAddMode] = useState(false);
   const [showEditMode, setShowEditMode] = useState(false);
@@ -24,11 +24,9 @@ function Users() {
     try {
       const response = await axios.get("http://localhost:3001/users");
       if (response) {
-        console.log(response.data);
+        setUsersList(response.data);
       }
-
-      setUsers(response.data);
-    } catch (error) {
+    } catch (e) {
       console.log(e);
     }
   };
@@ -76,7 +74,7 @@ function Users() {
   const deleteUser = async (userId) => {
     try {
       const response = await axios.delete(
-        "http://localhost:4000/users/" + userId
+        "http://localhost:3001/users/" + userId
       );
       if (response) {
         getAllUsers();
