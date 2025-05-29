@@ -5,6 +5,9 @@ import axios from "axios";
 import { Dialog } from "primereact/dialog";
 import ViewUser from "./_viewUser";
 import AddUser from "./_addUser";
+import EditUser from "./_editUser";
+import { ConfirmDialog } from "primereact/confirmdialog";
+import { confirmDialog } from "primereact/confirmdialog";
 
 function Users() {
   const [users, setUsers] = useState([]);
@@ -130,6 +133,23 @@ function Users() {
           }}
         />
       </Dialog>
+
+      <Dialog
+        header="Edit Exist User"
+        visible={showEditMode}
+        style={{ width: "70vw" }}
+        onHide={() => setShowEditMode(false)}
+      >
+        <EditUser
+          userId={selectedUserId}
+          setUserEdited={() => {
+            setShowEditMode(false);
+            getAllUsers();
+          }}
+        />
+      </Dialog>
+
+      <ConfirmDialog />
     </div>
   );
 }
