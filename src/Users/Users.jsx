@@ -60,6 +60,28 @@ function Users() {
     );
   };
 
+  const deleteUserConfirm = (userId) => {
+    confirmDialog({
+      message: "Are you sure you want to delete this user?",
+      header: "Confirmation",
+      icon: "pi pi-trash",
+      accept: () => deleteUser(userId),
+    });
+  };
+
+  const deleteUser = async (userId) => {
+    try {
+      const response = await axios.delete(
+        "http://localhost:4000/users/" + userId
+      );
+      if (response) {
+        getAllUsers();
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <div className="users-page">
       <div className="container">
