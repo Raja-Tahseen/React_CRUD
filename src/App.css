@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+@import "primereact/resources/themes/lara-light-indigo/theme.css";
+@import "primereact/resources/primereact.min.css";
+@import "primeicons/primeicons.css";
+@import "bootstrap/dist/css/bootstrap.css";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+body {
+  background-color: #f9f9f9;
+}
+
+.users-page h1 {
+  margin: 20px auto;
+  text-align: center;
+}
+
+.users-page h3 {
+  margin: 20px auto;
+  text-align: center;
+}
+
+.users-page .users-list {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 30px 0;
+}
