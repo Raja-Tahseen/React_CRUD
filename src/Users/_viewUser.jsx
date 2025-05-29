@@ -30,7 +30,7 @@ function ViewUser(props) {
   const fetchUserData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:4000/users/" + props.userId
+        "http://localhost:3001/users/" + props.userId
       );
       if (response) {
         console.log(response.data);

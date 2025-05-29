@@ -4,6 +4,7 @@ import { Column } from "primereact/column";
 import axios from "axios";
 import { Dialog } from "primereact/dialog";
 import ViewUser from "./_viewUser";
+import AddUser from "./_addUser";
 
 function Users() {
   const [users, setUsers] = useState([]);
@@ -114,6 +115,20 @@ function Users() {
         onHide={() => setShowViewMode(false)}
       >
         <ViewUser userId={selectedUserId} />
+      </Dialog>
+
+      <Dialog
+        header="Add New User"
+        visible={showAddMode}
+        style={{ width: "70vw" }}
+        onHide={() => setShowAddMode(false)}
+      >
+        <AddUser
+          setUserAdded={() => {
+            setShowAddMode(false);
+            getAllUsers();
+          }}
+        />
       </Dialog>
     </div>
   );
