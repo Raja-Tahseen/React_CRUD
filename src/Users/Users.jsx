@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import axios from "axios";
+import { Dialog } from "primereact/dialog";
+import ViewUser from "./_viewUser";
 
 function Users() {
   const [users, setUsers] = useState([]);
@@ -65,16 +67,32 @@ function Users() {
         <h3>We will use React, Primereact, Json-Server and Axios</h3>
 
         <div className="users-list">
-          <DataTable value={users} tableStyle={{ minWidth: "50rem" }}>
+          <div className="addNewUser">
+            <button
+              className="btn btn-success"
+              onClick={() => setShowAddMode(true)}
+            >
+              Add New User <i className="pi pi-plus"></i>
+            </button>
+          </div>
+          <DataTable value={users}>
             <Column field="name" header="Name"></Column>
-            <Column field="username" header="User Name"></Column>
-            <Column field="email" header="Email"></Column>
-            <Column field="phone" header="Phone"></Column>
+            <Column field="username" header="Username"></Column>
+            <Column field="email" header="Email Adress"></Column>
+            <Column field="phone" header="Phone Number"></Column>
             <Column field="website" header="Website"></Column>
             <Column header="Actions" body={actionsTemplate}></Column>
           </DataTable>
         </div>
       </div>
+      <Dialog
+        header="View User Data"
+        visible={showViewMode}
+        style={{ width: "70vw" }}
+        onHide={() => setShowViewMode(false)}
+      >
+        <ViewUser userId={selectedUserId} />
+      </Dialog>
     </div>
   );
 }
